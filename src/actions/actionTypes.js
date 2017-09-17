@@ -1,0 +1,6 @@
+export const GRID_CLICK = 'GRID_CLICK'
+export const FLAG_MINE = 'FLAG_MINE'
+export const RESET_TIMER = 'RESET_TIMER'
+export const TIMER_TICK = 'TIMER_TICK'
+export const RESET_GAME = 'RESET_GAME'
+export const CHANGE_BOARD_SIZE = 'CHANGE_BOARD_SIZE'

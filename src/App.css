@@ -1,0 +1,96 @@
+.app {
+  text-align: center;
+}
+
+.appLogo {
+  height: 80px;
+}
+
+.appHeader {
+  background-color: grey;
+  height: 150px;
+  padding: 20px;
+  color: black;
+}
+
+.statusContainer {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.statusContainer div {
+  flex: 1;
+}
+
+.statusContainer input {
+  width: 50px;
+}
+
+.statusContainer label {
+  margin-left: 8px;
+}
+
+.resetButton {
+  margin-left: 30px;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.gameWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.gameBoard {
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.gameCell {
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: grey;
+  border: 1px white solid;
+}
+
+.coveredCell:hover::before {
+  background-color: #f19898;
+}
+
+.coveredCell::before {
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e8e8e8;
+  opacity: 0.9;
+}
+
+.flaggedCell::before {
+  content: "";
+  background-image: url('/images/flag.png');
+  background-size: 30px 30px;
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.gameRow {
+  display: flex;
+}
