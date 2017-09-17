@@ -1,12 +1,19 @@
-# `create-react-app` ... with Redux
+# MineSweeper
 
-This is a barebones implementation of Redux with a React app that was generated with `create-react-app`, and then ejected with `npm run eject`.
+## How to Run
+* First, be sure to use a recent version of Node (I used 7.10)
+* Then, run `npm i` to install all dependencies
+* Then, to run the dev server just `npm run start`
+    * This should open http://localhost:3000/ in a browser. If for some reason it does not launch automatically, just copy/paste this url.
 
-:bulb: This repository consists of two commits and only two commits.  
 
- 1. **first commit** is the base code of a `create-react-app` app source code after eject (`npm run eject`)
- 2. **second commit** are the sample additions to implement basic redux
+## How to Play
+I think all normal rules apply.  Just click on cells to reveal information about nearby bombs.  Flag locations as having a bomb by right-clicking on the cell.  Once you have marked all bombs successfully you win!  There are 10 mines.
 
-:bulb: :bulb: It is worth noting that it is **not** required to run `npm run eject` in order to get Redux implemented in this app.  Implementing Redux in the app without ejecting is completely possible
+## Design, etc
+* Each piece of the UI is broken into components so there is a clear separation of concern.
+* Application state is only altered via Redux.  This helps keep application code predicable and readable since all mutations occur in only one location.
+* All game related logic is contained in /lib/mineSweeper.js.  This was done so the UI could mostly be focused on UI related things and could avoid being concerned too much about how the game logic works.
 
-![demo](images/demo.gif)
+This project is based on `create-react-app-with-redux`
+https://github.com/tstringer/create-react-app-with-redux

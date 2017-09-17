@@ -27,6 +27,7 @@ const GameCell = (props) => {
 }
 
 GameCell.propTypes = {
+  cellData: PropTypes.object.isRequired,
   revealSpot: PropTypes.func.isRequired,
   flagMine: PropTypes.func.isRequired
 }
