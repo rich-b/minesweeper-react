@@ -20,6 +20,7 @@ I think all normal rules apply.  Just click on cells to reveal information about
 
 ## What's left/missing?
 * More tests
+* Sass Modules instead of global css
 * Ability to 'unflag' a mine
 * Ability to change number of mines (UI work only)
 
