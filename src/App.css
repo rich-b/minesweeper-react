@@ -34,10 +34,6 @@
   margin-left: 30px;
 }
 
-.errorMessage {
-  color: red;
-}
-
 .gameWrapper {
   display: flex;
   flex-direction: column;
@@ -64,9 +60,10 @@
 
 .coveredCell:hover::before {
   background-color: #f19898;
+  opacity: 0.9;
 }
 
-.coveredCell::before {
+.coveredCell {
   content: "";
   display: block;
   height: 100%;
@@ -75,9 +72,15 @@
   left: 0;
   width: 100%;
   background-color: #e8e8e8;
+  opacity: 1;
 }
 
-.flaggedCell::before {
+.hidden {
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+
+.flaggedCell {
   content: "";
   background-image: url('/images/flag.png');
   background-size: 30px 30px;

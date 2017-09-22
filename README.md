@@ -11,7 +11,7 @@
 
 
 ## How to Play
-I think all normal rules apply.  Just click on cells to reveal information about nearby bombs.  Flag locations as having a bomb by right-clicking on the cell.  Once you have marked all bombs successfully you win!  There are 10 mines.
+I think all normal rules apply.  Just click on cells to reveal information about nearby bombs.  Flag locations as having a bomb by right-clicking on the cell.  Once you have revealed all cells except for bombs, you win!  There are 10 mines by default in "medium" difficulty mode.  "easy" mode contains 3 mines, and "hard" mode has 20 mines.
 
 ## Design, etc
 * Each piece of the UI is broken into components so there is a clear separation of concern.
@@ -21,8 +21,7 @@ I think all normal rules apply.  Just click on cells to reveal information about
 ## What's left/missing?
 * More tests
 * Sass Modules instead of global css
-* Ability to 'unflag' a mine
-* Ability to change number of mines (UI work only)
+
 
 This project is based on `create-react-app-with-redux`
 https://github.com/tstringer/create-react-app-with-redux

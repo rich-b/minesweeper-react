@@ -9,10 +9,7 @@ const GameCell = (props) => {
 
   return (
     <div
-      className={classNames('gameCell', {
-        coveredCell: props.cellData.isCovered,
-        flaggedCell: props.cellData.isFlagged
-      })}
+      className="gameCell"
       onClick={props.revealSpot}
       onContextMenu={contextMenuClick}
     >
@@ -22,6 +19,15 @@ const GameCell = (props) => {
         : props.cellData.nearbyBombs
       }
       </span>
+
+      <span className={classNames('coveredCell', {
+        hidden: !props.cellData.isCovered
+      })} />
+
+      { props.cellData.isFlagged
+        ? <span className="flaggedCell" />
+        : null
+      }
     </div>
   )
 }
