@@ -87,11 +87,13 @@ export default (state = initialState, action = {}) => {
         ...initialState,
         gameBoard: mineSweeper.generateBoard()
       }
-    case actionTypes.CHANGE_BOARD_SIZE:
+    case actionTypes.CHANGE_DIFFICULTY:
+      const difficulty = mineSweeper.difficulties[action.newDifficulty]
+
       return {
         ...initialState,
-        boardSize: action.newSize,
-        gameBoard: mineSweeper.generateBoard(action.newSize, state.mineCount)
+        difficulty: action.newDifficulty,
+        gameBoard: mineSweeper.generateBoard(difficulty.boardSize, difficulty.mineCount)
       }
     default:
       return state

@@ -3,19 +3,20 @@ import { connect } from 'react-redux'
 import * as gameActions from '../actions/gameActions'
 
 const GameStatusContainerUnconnected = (props) => {
-  function handleBoardSizeChange(e) {
-    const newValue = parseInt(e.target.value, 10)
-
-    if (newValue > 3 && newValue < 50) {
-      props.changeBoardSize(newValue)
-    }
+  function handleDifficultyChange(e) {
+    props.changeDifficulty(e.target.value)
   }
 
   return (
     <div className="statusContainer">
       <div>
-        <input name="boardSize" type="text" onChange={handleBoardSizeChange} defaultValue={props.boardSize} />
-        <label htmlFor="boardSize">Board Size</label>
+        <select name="difficulty" onChange={handleDifficultyChange} value={props.difficulty}>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+
+        <label htmlFor="difficulty">Difficulty</label>
       </div>
       <div>
         <span>
@@ -36,6 +37,8 @@ const GameStatusContainerUnconnected = (props) => {
 
 GameStatusContainerUnconnected.propTypes = {
   gameTime: PropTypes.number.isRequired,
+  changeDifficulty: PropTypes.func.isRequired,
+  difficulty: PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state, props) => ({

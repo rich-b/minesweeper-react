@@ -65,9 +65,9 @@ export const resetGame = () => {
   }
 }
 
-export const changeBoardSize = (newSize) => {
+export const changeDifficulty = (newDifficulty) => {
   return {
-    type: actionTypes.CHANGE_BOARD_SIZE,
-    newSize
+    type: actionTypes.CHANGE_DIFFICULTY,
+    newDifficulty
   }
 }

@@ -7,8 +7,7 @@ const initialState = {
   userLost: false,
   userWon: false,
   gameBoard: mineSweeper.generateBoard(),
-  mineCount: 10,
-  boardSize: 9
+  difficulty: 'medium'
 }
 
 export default initialState

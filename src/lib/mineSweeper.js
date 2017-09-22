@@ -121,8 +121,24 @@ const didUserWin = (gameBoard) => {
   return true
 }
 
+const difficulties = {
+  easy: {
+    boardSize: 5,
+    mineCount: 3
+  },
+  medium: {
+    boardSize: 9,
+    mineCount: 10
+  },
+  hard: {
+    boardSize: 15,
+    mineCount: 20
+  }
+}
+
 export default {
   generateBoard,
   findClickRevealCells,
-  didUserWin
+  didUserWin,
+  difficulties
 }
