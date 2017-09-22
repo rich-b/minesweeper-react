@@ -73,6 +73,8 @@ const generateBoard = (size = 9, mineCount = 10) => {
     }
   }))
 
+  gameBoard.minePositions = minePositions
+
   minePositions.forEach((p) => {
     gameBoard[p.x][p.y].hasBomb = true
   })

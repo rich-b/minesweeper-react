@@ -15,6 +15,10 @@ const updateCellInGameBoard = (gameBoard, coordinates, modifiedValues) => {
     ],
     ...gameBoard.slice(coordinates.x + 1)
   ]
+
+
+  // todo - cleanup array with object property
+  updatedBoard.minePositions = gameBoard.minePositions
   
   return updatedBoard
 }
@@ -26,34 +30,48 @@ export default (state = initialState, action = {}) => {
 
       const coordinates = { x: action.x, y: action.y }
       const userLost = state.gameBoard[action.x][action.y].hasBomb
-      const gameBoard = updateCellInGameBoard(
+      let gameBoard = updateCellInGameBoard(
         state.gameBoard,
         coordinates, {
           isCovered: false
         }
       )
       const userWon = mineSweeper.didUserWin(gameBoard)
+      const gameOver = userLost || userWon
+
+      if (gameOver) {
+        gameBoard = gameBoard.minePositions.reduce((updatedBoard, minePosition) => {
+          return updateCellInGameBoard(
+            updatedBoard,
+            minePosition, {
+              isCovered: false
+            }
+          )
+        }, gameBoard)
+      }
 
       return {
         ...state,
         gameBoard,
         userLost,
-        isRunning: !userLost && !userWon,
+        isRunning: !gameOver,
         gameStarted: true,
         userWon
       }
     case actionTypes.FLAG_MINE:
       const flagCoordinates = { x: action.x, y: action.y }
 
-      return {
-        ...state,
-        gameBoard: updateCellInGameBoard(
-          state.gameBoard,
-          flagCoordinates, {
-            isFlagged: !state.gameBoard[action.x][action.y].isFlagged
-          }
-        )
-      }
+      return state.isRunning
+        ? {
+          ...state,
+          gameBoard: updateCellInGameBoard(
+            state.gameBoard,
+            flagCoordinates, {
+              isFlagged: !state.gameBoard[action.x][action.y].isFlagged
+            }
+          )
+        }
+        : state
     case actionTypes.RESET_TIMER:
       return {
         ...state,
