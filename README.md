@@ -17,6 +17,7 @@ I think all normal rules apply.  Just click on cells to reveal information about
 * Each piece of the UI is broken into components so there is a clear separation of concern.
 * Application state is only altered via Redux.  This helps keep application code predicable and readable since all mutations occur in only one location.
 * All game related logic is contained in /lib/mineSweeper.js.  This was done so the UI could mostly be focused on UI related things and could avoid being concerned too much about how the game logic works.
+* React/Redux was chosen because that is what I am most comfortable with currently.
 
 ## What's left/missing?
 * More tests

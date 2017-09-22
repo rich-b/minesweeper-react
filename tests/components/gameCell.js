@@ -35,7 +35,7 @@ describe('GameCell Component', () => {
       />
     )
 
-    expect(cellWithBomb.props.children.props.children).to.eql('X')
+    expect(cellWithBomb.props.children[0].props.children).to.eql('X')
   })
 
   it('should render the number of nearby bombs', () => {
@@ -47,7 +47,7 @@ describe('GameCell Component', () => {
       />
     )
 
-    expect(cellWithBomb.props.children.props.children).to.eql(4)
+    expect(cellWithBomb.props.children[0].props.children).to.eql(4)
   })
 
   // todo - more tests
