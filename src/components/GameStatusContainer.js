@@ -26,13 +26,6 @@ const GameStatusContainerUnconnected = (props) => {
           <input type="button" className="resetButton" onClick={props.resetGame} value="Reset" />
           : null
         }
-
-        { props.errorMessage ?
-          <div className="errorMessage">
-            { props.errorMessage }
-          </div>
-          : null
-        }
       </div>
       <div>
 

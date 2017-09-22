@@ -15,9 +15,6 @@ const updateCellInGameBoard = (gameBoard, coordinates, modifiedValues) => {
     ],
     ...gameBoard.slice(coordinates.x + 1)
   ]
-
-  // todo - cleanup array with object property
-  updatedBoard.minePositions = gameBoard.minePositions
   
   return updatedBoard
 }
@@ -29,45 +26,33 @@ export default (state = initialState, action = {}) => {
 
       const coordinates = { x: action.x, y: action.y }
       const userLost = state.gameBoard[action.x][action.y].hasBomb
+      const gameBoard = updateCellInGameBoard(
+        state.gameBoard,
+        coordinates, {
+          isCovered: false
+        }
+      )
+      const userWon = mineSweeper.didUserWin(gameBoard)
+
+      return {
+        ...state,
+        gameBoard,
+        userLost,
+        isRunning: !userLost && !userWon,
+        gameStarted: true,
+        userWon
+      }
+    case actionTypes.FLAG_MINE:
+      const flagCoordinates = { x: action.x, y: action.y }
 
       return {
         ...state,
         gameBoard: updateCellInGameBoard(
           state.gameBoard,
-          coordinates, {
-            isCovered: false
+          flagCoordinates, {
+            isFlagged: !state.gameBoard[action.x][action.y].isFlagged
           }
-        ),
-        userLost,
-        isRunning: !userLost,
-        gameStarted: true,
-        errorMessage: null
-      }
-    case actionTypes.FLAG_MINE:
-      const flagCoordinates = { x: action.x, y: action.y }
-      const userWon = mineSweeper.isLastMine(state.gameBoard, flagCoordinates)
-
-      if (state.numberOfBombFlags >= state.mineCount) {
-        return {
-          ...state,
-          errorMessage: 'Too many mines have been flagged!',
-          userLost: true,
-          isRunning: false
-        }
-      } else {
-        return {
-          ...state,
-          gameBoard: updateCellInGameBoard(
-            state.gameBoard,
-            flagCoordinates, {
-              isFlagged: true
-            }
-          ),
-          numberOfBombFlags: state.numberOfBombFlags + 1,
-          userWon,
-          isRunning: !userWon,
-          errorMessage: null
-        }
+        )
       }
     case actionTypes.RESET_TIMER:
       return {
@@ -82,17 +67,13 @@ export default (state = initialState, action = {}) => {
     case actionTypes.RESET_GAME:
       return {
         ...initialState,
-        gameBoard: mineSweeper.generateBoard(),
-        errorMessage: null,
-        numberOfBombFlags: 0
+        gameBoard: mineSweeper.generateBoard()
       }
     case actionTypes.CHANGE_BOARD_SIZE:
       return {
         ...initialState,
         boardSize: action.newSize,
-        gameBoard: mineSweeper.generateBoard(action.newSize, state.mineCount),
-        errorMessage: null,
-        numberOfBombFlags: 0
+        gameBoard: mineSweeper.generateBoard(action.newSize, state.mineCount)
       }
     default:
       return state

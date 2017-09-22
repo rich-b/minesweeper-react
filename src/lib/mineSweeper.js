@@ -73,8 +73,6 @@ const generateBoard = (size = 9, mineCount = 10) => {
     }
   }))
 
-  gameBoard.minePositions = minePositions
-
   minePositions.forEach((p) => {
     gameBoard[p.x][p.y].hasBomb = true
   })
@@ -109,23 +107,20 @@ const findClickRevealCells = (gameBoard, coordinates) => {
   return []
 }
 
-const isLastMine = (gameBoard, coordinates) => {
-  const currentCell = gameBoard[coordinates.x][coordinates.y]
+const didUserWin = (gameBoard) => {
+  for (let x = 0; x < gameBoard.length; x++) {
+    for (let y = 0; y < gameBoard.length; y++) {
+      if (gameBoard[x][y].isCovered && !gameBoard[x][y].hasBomb) {
+        return false
+      }
+    }
+  }
 
-  if (!currentCell.hasBomb) return false
-
-  const allOtherMinePositions = gameBoard.minePositions.filter(minePosition =>
-    !(minePosition.x === coordinates.x && minePosition.y === coordinates.y)
-  )
-
-  return allOtherMinePositions.length === gameBoard.minePositions.length -1 &&
-    allOtherMinePositions.every((minePosition) => {
-      return gameBoard[minePosition.x][minePosition.y].isFlagged
-    })
+  return true
 }
 
 export default {
   generateBoard,
   findClickRevealCells,
-  isLastMine
+  didUserWin
 }
